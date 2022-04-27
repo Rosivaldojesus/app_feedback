@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} {{ block.super }} - Localizando um perfil  {% endblock %}
+
+
+{% block body %}
+    <h3>{{ form.query.label }}</h3>
+
+
+
+    <form action="" autocomplete="off" >
+        {{ form.query }}
+        <button type="submit" class="btn waves-effect waves-light">
+            Localizar
+            <i class="material-icons right">send</i>
+
+        </button>
+    </form>
+
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="row">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+    <br/>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} {{ block.super }} - Faça login  {% endblock %}
+
+
+
+{% block body %}
+    <h5>Informe usuário e senha</h5>
+
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <div class="row">
+        <form action="" method="POST">
+        {% csrf_token %}
+            <div class="input_field col s12">
+                {{ form.username|add_class:'validate'}}
+                <label for="{{ form.username.id_for_label }}">Usuário</label>
+            </div>
+            <div class="input_field col s12">
+                {{ form.password|add_class:'validate'}}
+                <label for="{{ form.password.id_for_label }}">Senha</label>
+            </div>
+
+            <button class="btn waves-effect waves-loight">Salvar
+                <i class="material-icons right">send</i>
+            </button>
+
+        </form>
+    </div>
+
+{% endblock %}

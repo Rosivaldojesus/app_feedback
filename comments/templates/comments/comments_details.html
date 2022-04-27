@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} {{ block.super }} - Detalhes do Feedback  {% endblock %}
+
+
+{% block body %}
+    
+    <h5>Visualização completa do Feedback</h5>
+
+    {% if message %}
+        <h5>{{ message }}</h5>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Feedback</th>
+                    <td>{{ comment }}</td>
+                </tr>
+                <tr>
+                    <th>Data e Hora</th>
+                    <td>{{ comment.created_at }}</td>
+                </tr>
+                <tr>
+                    <th>Círculo</th>
+                    <td>{{ comment.circle }}</td>
+                </tr>
+                <tr>
+                    <th>Ações</th>
+                    <td>
+                        <a href="{% url 'comments:mark_unread' comment.id %}" class="btn waves effect waves-light">Marcar como não lido</a>
+                        <a href="{% url 'accounts:dashboard' %}" class="btn waves effect waves-light">Valtar para o Dashboard</a>
+                    </td>
+                </tr>
+            </thead>
+        </table> 
+    {% endif %}
+
+{% endblock %}

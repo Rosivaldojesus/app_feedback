@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %} {{ block.super }} - Criação de perfil  {% endblock %}
+
+
+{% block body %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="row">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if form.errors %}
+        {{ form.non_field_errors }}
+    {% endif %}
+
+
+    <div class="row">
+        <form class="col s12" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="row">
+
+            <div class="file-field input-field col s12">
+                <div class="btn">
+                  <span>Escolha a foto</span>
+                  {{ form.photo|add_class:"validate" }}
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+            </div>
+              
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              {{ form.bio|add_class:"validate"|add_class:"materialize-textarea" }}
+              <label for="id_bio">Biografia</label>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              {{ form.birthday|add_class:"validate, datepicker" }}
+              <label for="id_birthday">Data de nascimento</label>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="input-field col s12">
+                {{ form.genre|add_class:"validate" }}
+                <label for="id_genre">Sexo</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+                {{ form.cell_phone|add_class:"validate" }}
+                <label for="id_cell_phone">Celular</label>
+            </div>
+    
+          <button class="btn waves-effect waves-light" type="submit">Salvar
+            <i class="material-icons right">send</i>
+        </button>
+            
+        </form>
+    </div>
+
+
+{% endblock %}

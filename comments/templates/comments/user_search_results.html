@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+    {{ block.super }} - Localizando um perfil  
+{% endblock %}
+
+
+{% block body %}
+    <table class="highlight responsive-table">
+        <thead>
+          <tr>
+              <th>Nome</th>
+              <th>Usuário</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for profile in profiles %}
+          <tr>
+            <td>
+                <div class="col s1">
+                <a href="{% url 'comments:get_user_profile_or_add_comment' profile.get_username %}">
+                    <img src="{{ profile.photo.url }} " width="30" height="30" class="circle responsive" alt="{{ profile.get_full_name }}" />
+                </a>
+                </div>
+                <a href="{% url 'comments:get_user_profile_or_add_comment' profile.get_username %}">{{ profile.get_full_name }}</a>
+            </td>
+            
+            <td>{{ profile.get_username }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+{% endblock %}
